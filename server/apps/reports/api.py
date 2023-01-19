@@ -34,12 +34,15 @@ class ReportApi(BaseApi):
         group_id = data["group_id"]
 
         # Obtendo sensores do grupo
-        sensors = db().sensors.find({"group_id": {"$in": group_id}})
-        sensors_ids = [sensor["_id"]
-                       for sensor in sensors]  # Lista de IDs dos sensores
+        query_sensors = db().sensors.find({"group_id": {"$in": group_id}}, {"_id": 1, "group_id": 1})
+        sensors = [(sensor["_id"], sensor["group_id"])
+                       for sensor in query_sensors]  # Lista de IDs e Grupos dos sensores
+        sensors = list(zip(*sensors))
+        sensors_ids  = list(sensors[0])
+        sensors_groups = list(sensors[1])
 
         if not sensors:
-            return f"Nenhum sensor do grupo {group_id} foi encontrado", 404
+            return f"Nenhum sensor dos grupos {group_id} foi encontrado", 404
 
         # Obtendo leituras
         query_docs = db().reads.find({"parent_id": {"$in": sensors_ids}})
@@ -49,6 +52,7 @@ class ReportApi(BaseApi):
         for doc in query_docs:
 
             data = [
+                sensors_groups[sensors_ids.index(doc["parent_id"])],
                 doc["parent_id"],
                 doc["value"],
                 doc["reliable"]
@@ -57,9 +61,12 @@ class ReportApi(BaseApi):
             lines.append(list(pandas.Series(data)))
 
         # Definindo tabela
-        report = pandas.DataFrame(lines, columns=["Identificador do sensor",
+        report = pandas.DataFrame(lines, columns=["Grupo do sensor",
+                                                  "Identificador do sensor",
                                                   "Valor da leitura",
                                                   "Confiabilidade da leitura"],)
+        for group in group_id:
+            pass
 
         # Definindo pasta em que os relatórios serão salvos
         folder_dir = os.path.join(os.getcwd(),
