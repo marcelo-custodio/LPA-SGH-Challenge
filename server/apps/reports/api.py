@@ -14,7 +14,6 @@ from server.driver import db
 from server.api import BaseApi
 from .models import Report
 
-
 class ReportApi(BaseApi):
     """
     API relatórios
@@ -65,6 +64,8 @@ class ReportApi(BaseApi):
                                                   "Identificador do sensor",
                                                   "Valor da leitura",
                                                   "Confiabilidade da leitura"],)
+
+        # Divisão do dataframe para geração de gráficos
         for group in group_id:
             pass
 

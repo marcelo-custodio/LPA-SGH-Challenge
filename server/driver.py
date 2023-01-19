@@ -3,7 +3,8 @@ Configuração básica do client do MondoDB
 """
 
 from pymongo import MongoClient, errors as pymongo_errors
-from server.settings import MONGO_USER, MONGO_PASSWORD, MONGO_URL
+from server.settings import MONGO_URL
+import shutil, os
 
 def db():
     """ 
@@ -25,3 +26,12 @@ def db():
         print(error)
 
     return client['desafio']
+
+def clear_reports():
+    db().reports.delete_many({})
+
+    path = "bucket/reports"
+    if os.path.exists(path):
+        shutil.rmtree(path) 
+    os.mkdir(path)
+    return

@@ -9,4 +9,4 @@ ATENÇÃO: EM PRODUÇÃO OU TRABALHANDO COM DADOS VERÍDICOS, NUNCA COLOQUE SENH
 """
 
 #MONGO_URL = f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@sgh.6yzqa.mongodb.net/?readOnly=true"
-MONGO_URL = f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@lpa-sgh-challenge.hd07rp6.mongodb.net/?readOnly=true" #?retryWrites=true&w=majority"
+MONGO_URL = f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@lpa-sgh-challenge.hd07rp6.mongodb.net/?retryWrites=true&w=majority"
