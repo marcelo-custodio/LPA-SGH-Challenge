@@ -1,7 +1,9 @@
+import os
+
 #MONGO_USER = "cafe-com-leite"
 #MONGO_PASSWORD = "nw2A9rwx8QxmXmCRkZMrGF38pmuSWsDK"
-MONGO_USER = "plantinha-inteligente"
-MONGO_PASSWORD = "beP1jlt9lXIGuFYj"
+MONGO_USER = os.environ["MONGO_USER"]
+MONGO_PASSWORD = os.environ["MONGO_PWD"] 
 """ 
 Usuário e senha do MongoDB do desafio
 

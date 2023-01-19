@@ -80,7 +80,7 @@ class ReportApi(BaseApi):
 
         # Obtendo hora atual para nomear arquivo
         local_time = datetime.now().astimezone(timezone('America/Sao_Paulo'))
-        timestamp = local_time.strftime('%d-%m-%y')
+        timestamp = local_time.strftime('%d-%m-%y_%H-%M-%S')
         file_path = os.path.join(
             folder_dir, f"Relatorio-{group_id}-{timestamp}")
 
@@ -89,7 +89,8 @@ class ReportApi(BaseApi):
 
         # Adicionando arquivos no objeto do db
         files = [
-            f"/api/files/reports/{report_id}/Relatorio-{group_id}-{timestamp}.csv"]
+            f"/api/files/{report_id}/Relatorio-{group_id}-{timestamp}.csv"
+        ]
         doc_data = dict(_id=report_id, files=files)
         
         db().reports.insert_one(doc_data)

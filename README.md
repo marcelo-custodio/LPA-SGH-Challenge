@@ -18,7 +18,7 @@ dados;
 - [x] Criar novos relatórios para vários grupos de sensores;
 - [ ] Diversificar a organização de dados para cada relatório. Exemplo: gerar um 
  gráfico com os dados dinamicamente, criar um pdf que organize os dados, etc.
-- [ ] Criar uma nova rota na API de modo a ser possível fazer o download desses 
+- [x] Criar uma nova rota na API de modo a ser possível fazer o download desses 
  arquivos gerados durante a criação de um relatório;
 
 ### Interface React
