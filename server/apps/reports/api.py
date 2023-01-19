@@ -34,7 +34,7 @@ class ReportApi(BaseApi):
         group_id = data["group_id"]
 
         # Obtendo sensores do grupo
-        sensors = db().sensors.find({"group_id": group_id})
+        sensors = db().sensors.find({"group_id": {"$in": group_id}})
         sensors_ids = [sensor["_id"]
                        for sensor in sensors]  # Lista de IDs dos sensores
 

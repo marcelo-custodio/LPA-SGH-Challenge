@@ -18,7 +18,7 @@ def list_reports():
 def create_reports():
 
 	class ReportRequest(Schema):
-		group_id = fields.String(required=True, validate=validate_group)
+		group_id = fields.List(cls_or_instance=fields.String(required=True, validate=validate_group))
 
 	data = request.json
 	try:
